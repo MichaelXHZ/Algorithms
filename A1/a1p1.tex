@@ -1,0 +1,208 @@
+\documentclass[12pt]{article}
+
+\usepackage{algo,fullpage,url,amssymb,epsfig,color,xspace}
+\usepackage[
+pdftitle={CS 240 Assignment 1},
+pdfsubject={University of Waterloo, CS 240, Fall 2016},
+pdfauthor={Arne Storjohan}]
+{hyperref}
+
+\renewcommand{\thesubsection}{Problem \arabic{subsection}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bf University of Waterloo}\\
+\vspace{3mm}
+{\Large\bf CS240 - Fall 2016}\\
+\vspace{2mm}
+{\Large\bf Assignment 1 Part 1}\\
+\vspace{3mm}
+\textbf{Due Date: Wednesday September 21 at 5:00pm}
+\end{center}
+
+\definecolor{care}{rgb}{0,0,0}
+\def\question#1{\item[\bf #1.]}
+\def\part#1{\item[\bf #1)]}
+\newcommand{\pc}[1]{\mbox{\textbf{#1}}} % pseudocode
+
+Please read
+\url{http://www.student.cs.uwaterloo.ca/~cs240/f16/guidelines.pdf}
+for guidelines on submission.  Problems 1 -- 4 are written
+problems; submit your solutions electronically as a PDF with file
+name {\tt a01p1wp.pdf} using MarkUs. We will also accept individual
+question files named {\tt a01q1w.pdf}, {\tt a01q2w.pdf}, ... , {\tt
+a01q4w.pdf} if you wish to submit questions as you complete them.
+
+Note: Assignment 1 has been split into 2 parts both worth 2.5\% each. 
+Keep in mind that part 1 is due before part 2. 
+There are 39 marks for part 1 and 34 marks for part 2. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[3+3+3+3+3=15 marks]}
+Provide a complete proof of the following statements from first
+principles (i.e., using the original definitions of order notation).
+All logarithms are natural logarithms: $\log = \ln$.\\
+
+\begin{minipage}[t]{24cm}
+\begin{itemize}
+\part{a} $12 n^3 +11n^2+10 \in O(n^3)$
+\\\textbf{Solution: } 
+\\We need to show that $\exists c$ and $\exists {n_0}$ such that $0 \leq 12 n^3 +11n^2+10 \leq c \cdot n^3$ for all $n \geq {n_0}$.
+\\Obviously, $12 n^3 + 11 n^2 + 10 \leq 33 n ^3$ when $n \geq 1$
+\\Thus, the given statement is true such that $c = 33$ and $n_0 = 1$
+\part{b} $12 n^3 +11n^2+10 \in \Omega(n^3)$
+\\\textbf{Solution: }
+\\We need to show that $\exists c$ and $\exists {n_0}$ such that $0 \leq c\cdot n^3 \leq 12 n^3 + 11n^2 + 10$ for all $n \geq {n_0}$.
+\\Obviously, $12 n^3 + 11 n^2 + 10 \geq 12 n ^3$ when $n \geq 1$
+\\Thus, the given statement is true such that $c = 33$ and $n_0 = 1$
+\part{c} $12 n^3 +11n^2+10 \in \Theta(n^3)$
+\\\textbf{Solution: }
+\\Since (a) and (b) have been proved to be true, $12 n^3 + 11n ^2 + 10 \in \Theta(n^3)$ is true by the fact.
+\part{d} $1000n \in o(n \log n)$
+\\\textbf{Solution: }
+\\We need to show that $\forall c$ and $\exists {n_0}$ such that $0 \leq 1000n < c \cdot n \log n$ for all $n \geq {n_0}$.
+\\Because $1000n < c \cdot n \log n \Rightarrow 1000 < c \cdot \log n \Rightarrow \frac{1000} {c} < \log n \Rightarrow e^\frac {1000} {n} < n$
+\\Thus, $n_0 = e^\frac{1000} {n}$.
+\\To prove that, plug $n_0$ in the equation:
+\\$c \cdot n \log n > c \cdot n \log n_0 = c \cdot n \log e^\frac{1000} {c} = cn(1000/c) = 1000n$
+\\So, the proof is done.
+\part{e} $n^{n} \in \omega(n^{20})$
+\\\textbf{Solution: }
+\\We need to show that $\forall c$ and $\exists {n_0}$ such that $0 \leq c \cdot n^{20} < n^n$ for all $n \geq {n_0}$.
+\\$cn^{20} < n^n \Rightarrow \log c + 20 \log n < n \log n = (n-1) \log n + \log n$
+\\First, when $\log n > \log c \Rightarrow n > c$.
+\\Second, when $(n-1) \log n > 20 \log n \Rightarrow n-1 > 20 \Rightarrow n > 21$.
+\\Thus, $n^n > cn^{20}$ when $n > max(c,21)$.
+\end{itemize}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[4+4=8 marks]} 
+For each pair of the following functions, fill in the correct asymptotic
+notation among $\Theta$, $o$, and $\omega$ in the statement $f(n)\in
+\sqcup(g(n))$.  Provide a brief justification of your answers.  In your
+justification you may use any relationship or technique that is described
+in class.
+\begin{itemize}
+\part{a} $f(n)=\sqrt{n}$ versus $g(n)=(\log{n})^{2}$
+\\\textbf{Solution: }
+\\
+\\$lim_{n \rightarrow \infty} \frac{(\log n)^2} {\sqrt n}$
+\\
+\\Using L'Hopital's rule,
+\\
+\\$=lim_{n \rightarrow \infty} \frac{2 \cdot \log n \cdot \frac {1} {n}} {0.5n^{-0.5}}$
+\\
+\\$=lim_{n \rightarrow \infty} \frac{2 \cdot \log n} {0.5n^{0.5}}$
+\\
+\\$=lim_{n \rightarrow \infty} \frac{2 \cdot \frac {1} {n}} {0.25n^{-0.5}}$
+\\
+\\$=lim_{n \rightarrow \infty} \frac{2} {0.25n^{0.5}}$
+\\
+\\$= 0$
+\\$\therefore f(n) \in o(g(n))$.
+\part{b} $f(n)=n^3(5+2\cos{2n})$ versus $g(n)=3n^2+4n^3+5n$
+\\\textbf{Solution: }
+\\$\because -2 \leq 2\cos{2n} \leq 2$, $3 \leq 5+2\cos{2n} \leq 7$, $3n^3 \leq n^3(5+2\cos{2n}) \leq 7n^3$.
+\\$\therefore f(n) \in \theta (n^3)$.
+\\$\because \theta (3n^2+4n^3+5n) = \theta(4n^3) = \theta(n^3)$ by "Maximum Rules", $g(n) \in \theta (n^3)$.
+\\$\therefore f(n) \in \theta (g(n))$.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{[6+6=12 marks]}
+Prove or disprove each of the following statements.  To prove a
+statement, you should provide a formal proof that is based on the
+definitions of the order notations.  To disprove a statement, you can
+either provide a counter example and explain it or provide a formal proof.
+All functions are positive functions.
+\begin{itemize}
+\part{a} $f(n) \not \in o(g(n))$ and $f(n) \not \in \omega(g(n))
+\Rightarrow f(n) \in \Theta(g(n))$
+\\
+\\\textbf{Solution:}
+\\
+\\$f(n) \not \in o(g(n))$
+\\
+\\$\Rightarrow$ not ($\forall c > 0, \exists n_0 > 0$ s.t. $0 \leq f(n) < cg(n)$ for all $n \geq n_0$
+\\
+\\$\Rightarrow \exists c > 0, \exists n > n_0, \forall n_0 > 0, f(n) < 0$ or $f(n) \geq cg(n)$
+\\
+\\$\because g(n) \geq 0$ and $f(n) \geq 0$
+\\
+\\$\therefore$ We choose $f(n) \geq cg(n) \geq 0$
+\\
+\\$\Rightarrow \exists c > 0, \exists n_0 > 0$ s.t. $f(n) \geq cg(n) \geq 0$,  $\forall n \geq n_0$
+\\
+\\$\Rightarrow f(n) \in \Omega(g(n))$
+\\
+\\$f(n) \not \in \omega(g(n))$
+\\
+\\$\Rightarrow$ not ($\forall c > 0, \exists n_0 > 0$ s.t. $0 \leq cg(n) < f(n)$ for all $n \geq n_0$
+\\
+\\$\Rightarrow \exists c > 0, \exists n > n_0, \forall n_0 > 0, cg(n) < 0$ or $cg(n) \geq f(n)$
+\\
+\\$\because g(n) \geq 0$ and $f(n) \geq 0$
+\\
+\\$\therefore$ We choose $cg(n) \geq f(n) \geq 0$
+\\
+\\$\Rightarrow \exists c > 0, \exists n_0 > 0$ s.t. $cg(n) \geq f(n) \geq 0$,  $\forall n \geq n_0$
+\\
+\\$\Rightarrow f(n) \in O(g(n))$
+\\
+\\Therefore, $f(n) \in \Theta(g(n))$.
+\part{b} $\min(f(n),g(n)) \in \Theta\left (\frac{f(n)g(n)}{f(n)+g(n)}\right)$  
+\\
+\\\textbf{Solution: }
+\\
+\\Firstly, we need to prove $min(f(n),g(n)) \in O(\frac{f(n)g(n)} {f(n)+g(n)})$.
+\\
+\\We need to show that, $\exists c > 0$, $\exists n_0 > 0$, s.t. $0 \leq min(f(n), g(n)) \leq c \cdot \frac{f(n)g(n)} {f(n)+g(n)}$ for all $n \geq n_0$.
+\\
+\\If $f(n) > g(n)$, $\Rightarrow g(n) \leq c \cdot \frac{f(n)g(n)} {f(n)+g(n)} \Rightarrow 1 \leq \frac{cf(n)} {f(n) + g(n)} \Rightarrow$
+\\
+\\$ cf(n) \geq f(n) + g(n) \Rightarrow cf(n) \geq 2f(n) \geq f(n) + g(n) \Rightarrow$ $c \geq 2$ and $ n_0 \geq 1$
+\\
+\\If $f(n) < g(n)$, $\Rightarrow f(n) \leq c \cdot \frac{f(n)g(n)} {f(n)+g(n)} \Rightarrow 1 \leq \frac{cg(n)} {f(n) + g(n)} \Rightarrow$
+\\
+\\$ cg(n) \geq f(n) + g(n) \Rightarrow cg(n) \geq 2g(n) \geq f(n) + g(n) \Rightarrow$ $c \geq 2$ and $ n_0 \geq 1$
+\\
+\\Thus, the first part is proved.
+\\
+\\Secondly, we need to prove $min(f(n),g(n)) \in \Omega(\frac{f(n)g(n)} {f(n)+g(n)})$.
+\\
+\\We need to show that $\exists c > 0$, $\exists n_0 > 0$, s.t. $0 \leq c \cdot \frac{f(n)g(n)} {f(n)+g(n)} \leq min(f(n), g(n))$ for all $n \geq n_0$.
+\\
+\\If $f(n) > g(n)$, $\Rightarrow g(n) \geq c \cdot \frac{f(n)g(n)} {f(n)+g(n)} \Rightarrow 1 \geq \frac{cf(n)} {f(n) + g(n)} \Rightarrow$
+\\
+\\$ cf(n) \leq f(n) + g(n) \Rightarrow cf(n) \leq f(n) \leq f(n) + g(n) \Rightarrow$ $c \leq 1$ and $ n_0 \geq 1$
+\\
+\\If $f(n) < g(n)$, $\Rightarrow f(n) \geq c \cdot \frac{f(n)g(n)} {f(n)+g(n)} \Rightarrow 1 \geq \frac{cg(n)} {f(n) + g(n)} \Rightarrow$
+\\
+\\$ cg(n) \leq f(n) + g(n) \Rightarrow cg(n) \leq g(n) \leq f(n) + g(n) \Rightarrow$ $c \leq 1$ and $ n_0 \geq 1$
+\\
+\\Thus, the second part is proved.
+\\
+\\Therefore, $\min(f(n),g(n)) \in \Theta\left (\frac{f(n)g(n)}{f(n)+g(n)}\right)$ is true.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\subsection{[4 marks]}
+Derive a closed form for the following sum:
+$$
+S(n) = \sum_{i=1}^n i/2^i.
+$$
+\\\textbf{Solution: }
+\\
+\\$S(n) = 1/2 + 2/4 + 3/8 + 4/16 + ... + n/2^n$
+\\
+\\$= (1/2 + 1/4 + 1/8 + 1/16 + ...) + (1/4 + 1/8 + 1/16 + 1/32 + ...) + (1/8 + 1/16 + 1/32 + 1/64 + ...) + ... + (1/2^n)$
+\\
+\\$= \frac{1/2} {1/2} + \frac{1/4} {1/2} + \frac{1/8}{1/2} + ... + (1/2^n)$
+\\
+\\$= 1 + 1/2 + 1/4 + 1/8 + 1/16 + ... + 1/2^n$
+\\
+\\$=\frac{1}{1/2}
+\\
+\\$=2
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
